@@ -1,6 +1,6 @@
 # AAVLD Guidance for Laboratory Information Technology and Digital Systems
 
-**Working Draft 0.2 - 2026-08-19**
+**Working Draft 0.3 - 2026-10-02**
 
 > This is a committee working draft. It has not been approved and does not create
 > new AAVLD accreditation requirements or obligations. Its purpose is to help
@@ -17,6 +17,14 @@ This draft uses three statement types:
 - **Example** is an optional pattern, question, or record format. Examples are not
   mandatory and do not endorse a product or vendor.
 
+Examples, illustrations, and screenshots are illustrative only. They are not
+click-by-click instructions for a particular product and may not match the
+screens or steps of any specific system. They are intended to be general enough
+to apply to any technology a laboratory uses. Product logos, vendor names, and
+other identifying details are removed or obscured, and some examples may be
+generic, artificially generated scenarios rather than records from a real
+laboratory.
+
 ## 1. Purpose, scope, audience, and use
 
 This guidance is written primarily for laboratories applying existing
@@ -30,6 +38,12 @@ It is intended to be vendor-neutral and risk-based. It does not prescribe a
 single technical architecture, product, control implementation, or documentary
 form. Laboratories should select controls and evidence that are appropriate to
 their systems, services, diagnostic activities, and risks.
+
+The guidance is not limited to LIMS. It is intended to address the information
+technology issues a laboratory may encounter while gaining or maintaining
+accreditation, across any system or service that meets the inclusion test in
+Section 3. Each laboratory determines which of its systems the guidance
+appropriately applies to.
 
 This guidance does not replace the current AAVLD Requirements, laboratory
 policies, contractual obligations, or applicable law. Where an AAVLD requirement
@@ -55,6 +69,12 @@ The working requirements-to-guidance matrix in
 records the more detailed clause-level mapping. It will be completed as committee
 decisions are made.
 
+**Guidance recommendation.** Laboratories may find it useful to review their IT
+practices against ISO/IEC 17025 as a cross-check, so that nothing vital to that
+standard is missed. This guidance references ISO/IEC 17025 for that purpose
+only. It does not restate the standard or make it an AAVLD accreditation
+requirement; the current AAVLD Requirements remain authoritative. See #18.
+
 ## 3. System inventory, roles, and risk-based prioritization
 
 **Guidance recommendation.** Maintain an inventory of systems and services that
@@ -62,6 +82,36 @@ create, receive, process, store, transmit, report, or support diagnostic and
 quality data. The inventory can include LIMS, instrument-connected computers,
 interfaces, reporting systems, user-developed tools, spreadsheets, infrastructure,
 and externally provided services when they affect relevant data or activities.
+
+**Guidance recommendation.** The laboratory determines which of its systems and
+services the guidance applies to. A system or service is in scope when it can
+affect one or more of the following:
+
+- diagnostic activities or reported results;
+- technical, quality, test, validation, or other retained laboratory records;
+- the confidentiality, integrity, availability, security, or retrievability of
+  those data and records; or
+- the laboratory's ability to meet an existing AAVLD requirement.
+
+**Guidance recommendation.** At a minimum, consider any system whose failure or
+error could affect patient diagnosis or treatment. Commonly in-scope items
+include:
+
+- LIMS;
+- quality-management system;
+- analyzer and instrument firmware;
+- research tools used in diagnostic or validation work; and
+- inventory tools that track reagent lot numbers and chemical expiration dates.
+
+**Example.** Laboratories sometimes overlook items that are not usually thought
+of as "IT systems," such as analyzer firmware, instrument control software, or a
+spreadsheet used to track reagent lots. These can affect results in the same way
+as a LIMS and are worth including in the inventory.
+
+> **Committee review pending:** The candidate category table in
+> [`docs/planning/potential-coverage.md`](../docs/planning/potential-coverage.md)
+> (Core, Conditional, or Out of scope) will be reviewed at a follow-up
+> subcommittee meeting. See #16.
 
 For each in-scope item, identify its intended use, owner, important interfaces,
 data handled, supplier or service relationship, and relative impact on diagnostic
@@ -130,6 +180,16 @@ that affect applicable AAVLD requirements. This may include service scope, acces
 data handling, incident communication, backup/recovery responsibilities, change
 notification, and available evidence.
 
+**Guidance recommendation.** For interoperability, consider applicable reporting
+and data-exchange standards, including federal reporting standards, when
+selecting, configuring, or changing reporting systems and interfaces. Using these
+standards can make electronic result exchange easier even where they are not
+required for AAVLD accreditation. Referencing a standard in this guidance does
+not make it an accreditation requirement.
+
+> **Committee review pending:** The specific reporting standards to reference
+> have not yet been identified. See #17.
+
 ## 7. Validation, verification, and change control
 
 **AAVLD requirement.** The current AAVLD Requirements call for applicable
@@ -148,13 +208,36 @@ deviations, approvals, implementation record, and any follow-up review. The
 amount of evidence should be proportionate to the potential impact on diagnostic
 activities and data integrity.
 
-**Example.** A small report-format change may need a focused documented check;
-a new interface that transfers diagnostic results may need documented end-to-end
-testing, approval, and follow-up monitoring.
+**Guidance recommendation.** Use a risk-based, intended-use approach to decide
+how much validation or verification a new system or change needs. For each
+change, consider:
 
-> **Committee decision pending:** The committee will define the minimum evidence
-> expected for validation, verification, and change control, including the terms
-> used for distinct types of systems and changes.
+- whether the change could affect animal health and, if so, how; and
+- how likely the change is to produce an incorrect result if something goes
+  wrong, and whether that result would affect the patient.
+
+**Guidance recommendation.** A simple risk matrix that combines the severity of
+a potential incorrect result with its likelihood can help a laboratory rank
+changes consistently and set the evidence needed for each level.
+
+**Example.** A risk matrix might rate severity from low (cosmetic, with no effect
+on results) to high (could change a reported result or a treatment decision),
+and likelihood from unlikely to likely. Two changes illustrate the range:
+
+| Change | Severity if wrong | Likelihood | Suggested evidence |
+| --- | --- | --- | --- |
+| Change the font of a report heading | Low: no effect on the result or interpretation | Unlikely | Focused documented check of the report output. |
+| Change the calculation of a sodium:potassium ratio | High: an incorrect ratio could change diagnosis and treatment | Possible | Documented testing against known values, review and approval, and follow-up monitoring. |
+
+A new interface that transfers diagnostic results would similarly warrant
+documented end-to-end testing, approval, and follow-up monitoring.
+
+> **Committee review pending:** The subcommittee agrees with this risk-based
+> baseline and confirmed that validation, verification, and change-control
+> guidance belongs in this document. It will review the minimum evidence,
+> definition of a material change, and terminology in depth at a further
+> meeting. Where detailed criteria are not agreed, the guidance will at least
+> provide a set of references. See #15.
 
 ## 8. Backup, recovery, continuity, and nonconforming work
 
@@ -184,6 +267,17 @@ intended-use and risk assessment, validation/verification record, change-control
 record, access-review record, backup/recovery test record, and external-provider
 review prompts. See [`docs/planning/template-catalog.md`](../docs/planning/template-catalog.md).
 
+Examples should show, without promoting any product, which changes to systems
+may need revalidation and which systems fall within this guidance. Examples may
+use generic, artificially generated scenarios, including AI-generated content.
+Any screenshot has logos, product names, and other identifying details removed
+or obscured. See "How to read this draft" for how examples should be
+interpreted.
+
+> **Committee review pending:** The committee will decide, once the draft is
+> complete, whether separate examples and templates are still needed and which
+> to publish. See #9 and #21.
+
 ## 10. Traceability and references
 
 ### Authoritative source
@@ -201,3 +295,9 @@ review prompts. See [`docs/planning/template-catalog.md`](../docs/planning/templ
 
 Related and informative sources may be added only after committee classification
 and approval. Their citation does not make them an accreditation requirement.
+
+- ISO/IEC 17025, General requirements for the competence of testing and
+  calibration laboratories (informative cross-check; see Section 2 and #18).
+- Applicable reporting and data-exchange standards, including federal reporting
+  standards (informative, for interoperability; see Section 6 and #17). Specific
+  standards to be identified.
